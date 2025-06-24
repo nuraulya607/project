@@ -89,6 +89,13 @@ void hapusPelanggan(int no) {
     delete hapus;
 }
 
+void totalHarga() {
+    int total = 0;
+    for (Node* p = head; p != nullptr; p = p->next)
+        total += p->data.hargaItem;
+    cout << "Total seluruh harga top up: Rp " << total << endl;
+}
+
 int main() {
     inisialisasiData();
     tampilkanPelanggan();
@@ -100,6 +107,9 @@ int main() {
     cout << "\nMenghapus pelanggan nomor 2...\n";
     hapusPelanggan(2);
     tampilkanPelanggan();
+
+        cout << "\nMenghitung total harga...\n";
+    totalHarga();
 
     return 0;
 }
