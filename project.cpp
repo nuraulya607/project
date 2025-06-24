@@ -64,6 +64,31 @@ void tambahPelanggan(string nama, string item, int harga) {
     cout << "Data pelanggan baru berhasil ditambahkan.\n";
 }
 
+void hapusPelanggan(int no) {
+    if (head == nullptr) {
+        cout << "Data kosong!\n";
+        return;
+    }
+
+    Node* hapus;
+    if (no == 1) {
+        hapus = head;
+        head = head->next;
+    } else {
+        Node* p = head;
+        for (int i = 1; i < no - 1 && p != nullptr; i++)
+            p = p->next;
+        if (p == nullptr || p->next == nullptr) {
+            cout << "Nomor tidak valid!\n";
+            return;
+        }
+        hapus = p->next;
+        p->next = hapus->next;
+    }
+    cout << "Data \"" << hapus->data.nama << "\" berhasil dihapus.\n";
+    delete hapus;
+}
+
 int main() {
     inisialisasiData();
     tampilkanPelanggan();
@@ -71,6 +96,10 @@ int main() {
     cout << "\nMenambah pelanggan baru...\n";
     tambahPelanggan("Budi", "Diamond FF", 20000);
     tampilkanPelanggan();
-    
+
+    cout << "\nMenghapus pelanggan nomor 2...\n";
+    hapusPelanggan(2);
+    tampilkanPelanggan();
+
     return 0;
 }
