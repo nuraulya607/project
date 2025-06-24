@@ -47,11 +47,30 @@ void tampilkanPelanggan() {
                  << "Rp " << p->data.hargaItem << endl;
         }
     }
+
     getch();
+}
+
+void tambahPelanggan(string nama, string item, int harga) {
+    Node* baru = new Node{{nama, item, harga}, nullptr};
+    if (head == nullptr) {
+        head = baru;
+    } else {
+        Node* p = head;
+        while (p->next != nullptr)
+            p = p->next;
+        p->next = baru;
+    }
+    cout << "Data pelanggan baru berhasil ditambahkan.\n";
 }
 
 int main() {
     inisialisasiData();
     tampilkanPelanggan();
+
+    cout << "\nMenambah pelanggan baru...\n";
+    tambahPelanggan("Budi", "Diamond FF", 20000);
+    tampilkanPelanggan();
+    
     return 0;
 }
